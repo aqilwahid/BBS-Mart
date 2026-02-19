@@ -1,0 +1,662 @@
+:root {
+    --primary-green: #00A651;
+    --secondary-green: #007A3B;
+    --accent-yellow: #FFD700;
+    --bg-light: #F9F9F9;
+    --text-dark: #333;
+    --text-light: #FFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow: hidden;
+    /* Prevent scrolling for slide effect */
+    height: 100vh;
+    width: 100vw;
+}
+
+.presentation-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* Navigation Controls */
+.nav-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+}
+
+.nav-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+}
+
+.slide-indicators {
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.indicator.active {
+    background: var(--primary-green);
+    transform: scale(1.2);
+}
+
+/* Slide Basics */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide-content {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Slide 1 Header Position */
+#slide-1 .center-content {
+    justify-content: flex-start;
+    padding-top: 50px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 3rem;
+}
+
+.logo-bbs {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-bbs-mart {
+    height: 130px;
+    /* Significantly larger */
+    width: auto;
+    object-fit: contain;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-green);
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-green);
+}
+
+.highlight {
+    color: var(--primary-green);
+    /* border-bottom: 4px solid var(--accent-yellow); */
+    background: linear-gradient(120deg, transparent 0%, transparent 60%, var(--accent-yellow) 60%, var(--accent-yellow) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+    background-position: 0 85%;
+}
+
+
+
+/* Slide 1: Problem */
+.problem-visuals {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3rem;
+}
+
+.problem-item {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.problem-item i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #d32f2f;
+    /* Alert color for problem */
+    display: block;
+}
+
+/* Slide 2: Solution */
+.solution-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 2rem;
+}
+
+.solution-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--primary-green);
+    transition: transform 0.3s;
+}
+
+.solution-card:hover {
+    transform: translateY(-10px);
+}
+
+.solution-card .icon-box {
+    font-size: 3rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+}
+
+/* Slide 3: Chat Simulation */
+.two-column {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: 50px;
+}
+
+.phone-mockup {
+    width: 300px;
+    height: 600px;
+    background: #333;
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 4px solid #444;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #efe7dd;
+    /* WhatsApp default bg color approximation */
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #075E54;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header .avatar {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    color: #075E54;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    position: relative;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.message.in {
+    align-self: flex-start;
+    background: white;
+    border-top-left-radius: 0;
+}
+
+.message.out {
+    align-self: flex-end;
+    background: #dcf8c6;
+    border-top-right-radius: 0;
+}
+
+.chat-input-area {
+    background: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+}
+
+.chat-input-area button {
+    background: #075E54;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.simulation-controls button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.product-option {
+    background: #f9f9f9;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.product-option:hover {
+    background-color: #e0e0e0;
+}
+
+/* Slide 4: Ecosystem */
+.ecosystem-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 2rem 0;
+}
+
+.eco-node {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 2px solid var(--primary-green);
+    font-weight: bold;
+    box-shadow: var(--shadow);
+    width: 250px;
+}
+
+.eco-row {
+    display: flex;
+    gap: 20px;
+}
+
+.arrow-down {
+    font-size: 1.5rem;
+    color: var(--primary-green);
+}
+
+.highlight-text {
+    font-style: italic;
+    color: var(--secondary-green);
+    margin-top: 1rem;
+}
+
+/* Slide 5: Tech Stack */
+.tech-stack-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.tech-layer {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: var(--shadow);
+    border-bottom: 4px solid var(--accent-yellow);
+}
+
+.connector-line {
+    width: 50px;
+    height: 4px;
+    background: var(--primary-green);
+}
+
+.tech-note {
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    color: var(--secondary-green);
+}
+
+/* Slide 6: Dashboard */
+.mock-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.metric-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-green);
+}
+
+.metric-card h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.metric-card .value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.chart-area {
+    grid-column: 1 / -1;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chart-placeholder {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.bar {
+    width: 40px;
+    background: var(--primary-green);
+    opacity: 0.8;
+    border-radius: 4px 4px 0 0;
+    transition: height 1s ease-out;
+}
+
+/* Slide 7: Value Prop */
+.value-list {
+    list-style: none;
+    text-align: left;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+}
+
+.value-list li {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.value-list i {
+    color: var(--primary-green);
+}
+
+.final-statement {
+    font-size: 2rem;
+    color: var(--secondary-green);
+    margin-top: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .slide {
+        padding: 20px;
+        overflow-y: auto;
+        /* Allow scrolling within slide if content overflows */
+        align-items: flex-start;
+        /* Align to top on mobile */
+    }
+
+    .slide-content {
+        padding-top: 40px;
+        /* Space for content */
+        padding-bottom: 80px;
+        /* Space for nav */
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Logos */
+    .logo-container {
+        gap: 15px;
+        margin-bottom: 1rem;
+    }
+
+    .logo-bbs,
+    .logo-bbs-mart {
+        height: 50px;
+        /* Smaller height for mobile */
+    }
+
+    /* Slide 1 */
+    .problem-visuals {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Slide 2 */
+    .solution-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Slide 3: Chat Simulation */
+    .two-column {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .phone-mockup {
+        width: 100%;
+        max-width: 320px;
+        height: 60vh;
+        min-height: 400px;
+        margin: 0 auto 20px auto;
+    }
+
+    .simulation-controls {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* Slide 4: Ecosystem */
+    .eco-row {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .eco-node {
+        width: 100%;
+        max-width: 300px;
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    /* Slide 5: Tech Stack */
+    .tech-stack-container {
+        flex-direction: column;
+    }
+
+    .connector-line {
+        width: 4px;
+        height: 30px;
+    }
+
+    .tech-layer {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Slide 6: Dashboard */
+    .mock-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-area {
+        height: 150px;
+    }
+
+    /* Slide 7: Value Prop */
+    .value-list {
+        font-size: 1.1rem;
+    }
+
+    .final-statement {
+        font-size: 1.5rem;
+    }
+
+    /* Navigation */
+    .nav-controls {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px;
+        bottom: 0;
+        justify-content: center;
+        backdrop-filter: blur(5px);
+        border-top: 1px solid #ddd;
+        gap: 30px;
+        /* More space between buttons */
+    }
+
+    .nav-btn {
+        width: 50px;
+        /* Larger touch target */
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}

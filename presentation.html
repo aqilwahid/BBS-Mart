@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBS Mart – AI Sales Agent Presentasi</title>
+    <link rel="stylesheet" href="presentation_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="presentation-container">
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button id="prevBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="slide-indicators" id="indicators"></div>
+            <button id="nextBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <!-- SLIDE 1: Latar Belakang -->
+        <section class="slide active" id="slide-1">
+            <div class="slide-content center-content">
+                <div class="logo-container">
+                    <img src="Logo BBS.jpg" alt="Logo BBS" class="logo-bbs">
+                    <img src="Logo BBS Mart.jpeg" alt="Logo BBS Mart" class="logo-bbs-mart">
+                </div>
+                <h1>Selamat Datang di Portofolio BBS Mart<br><span class="highlight">Marketplace UMKM Sumenep Berbasis
+                        WhatsApp</span></h1>
+                <div class="problem-visuals">
+                    <div class="problem-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <p>Jualan Manual di WA</p>
+                    </div>
+                    <div class="problem-item">
+                        <i class="fas fa-random"></i>
+                        <p>Tidak Ada Sistem Rekomendasi</p>
+                    </div>
+                    <div class="problem-item">
+                        <i class="fas fa-chart-line" style="opacity: 0.3;"></i>
+                        <p>Bank Sulit Baca Performa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Solusi BBS Mart -->
+        <section class="slide" id="slide-2">
+            <div class="slide-content">
+                <h2>Solusi: BBS Mart – AI Sales Agent</h2>
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                        <h3>Pasar di WhatsApp</h3>
+                        <p>Tanpa aplikasi tambahan. Tanpa marketplace besar. Cukup chat.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-box"><i class="fas fa-robot"></i></div>
+                        <h3>AI Salesman</h3>
+                        <p>Mendeteksi niat beli, merekomendasikan produk, menghubungkan ke penjual.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-box"><i class="fas fa-university"></i></div>
+                        <h3>BPRS Bhakti Sumekar</h3>
+                        <p>Transaksi aman, langsung ke rekening, menjadi data kredit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Simulasi Chat Interaktif -->
+        <section class="slide" id="slide-3">
+            <div class="slide-content two-column">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="chat-header">
+                            <div class="avatar"><i class="fas fa-robot"></i></div>
+                            <div class="chat-info">
+                                <h4>BBS Mart AI</h4>
+                                <p>Online</p>
+                            </div>
+                        </div>
+                        <div class="chat-body" id="chatBody">
+                            <!-- Chat messages will be injected here by JS -->
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" placeholder="Ketik pesan..." disabled>
+                            <button id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="simulation-controls">
+                    <h3>Simulasi Chat</h3>
+                    <p>Klik tombol di bawah untuk demo:</p>
+                    <button class="action-btn" onclick="startChatDemo()">"Cari Keripik Singkong"</button>
+                    <div id="simulation-status">Menunggu input...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Ekosistem Lokal -->
+        <section class="slide" id="slide-4">
+            <div class="slide-content">
+                <h2>Ekosistem Ekonomi Lokal</h2>
+                <div class="ecosystem-diagram">
+                    <div class="eco-node customer">Customer</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="eco-node ai">AI Sales Agent</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="eco-node umkm">UMKM (Rekening BPRS)</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="eco-row">
+                        <div class="eco-node courier">Kurir Lokal</div>
+                        <div class="eco-node bank">BPRS Bhakti Sumekar</div>
+                    </div>
+                </div>
+                <p class="highlight-text">"Digitalisasi tanpa mengubah kebiasaan masyarakat."</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Sistem Teknologi -->
+        <section class="slide" id="slide-5">
+            <div class="slide-content">
+                <h2>Arsitektur Sistem (High Level)</h2>
+                <div class="tech-stack-container">
+                    <div class="tech-layer">
+                        <h3>WhatsApp Gateway</h3>
+                        <p>Interface Utama</p>
+                    </div>
+                    <div class="connector-line"></div>
+                    <div class="tech-layer ai-core">
+                        <h3>AI Intent & Tech Recommendation Engine</h3>
+                        <p>Otak Sistem</p>
+                    </div>
+                    <div class="connector-line"></div>
+                    <div class="tech-layer database">
+                        <h3>Database UMKM & Produk</h3>
+                        <p>Data Center</p>
+                    </div>
+                </div>
+                <div class="tech-note">
+                    <p><i class="fas fa-info-circle"></i> Tidak mengelola uang. Tidak menjadi payment gateway.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Dashboard BPRS -->
+        <section class="slide" id="slide-6">
+            <div class="slide-content">
+                <h2>Dashboard Monitoring BPRS</h2>
+                <div class="mock-dashboard">
+                    <div class="metric-card">
+                        <h4>UMKM Aktif</h4>
+                        <div class="value">1,250</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Transaksi Harian</h4>
+                        <div class="value">Rp 45.2jt</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Produk Top</h4>
+                        <div class="value">Keripik, Batik</div>
+                    </div>
+                    <div class="chart-area">
+                        <div class="chart-placeholder">
+                            <div class="bar" style="height: 40%"></div>
+                            <div class="bar" style="height: 60%"></div>
+                            <div class="bar" style="height: 80%"></div>
+                            <div class="bar" style="height: 50%"></div>
+                            <div class="bar" style="height: 90%"></div>
+                        </div>
+                        <p>Grafik Volume Transaksi Mingguan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Nilai Strategis -->
+        <section class="slide" id="slide-7">
+            <div class="slide-content center-content">
+                <h2>Nilai Strategis untuk BPRS</h2>
+                <ul class="value-list">
+                    <li><i class="fas fa-check-circle"></i> Meningkatkan jumlah rekening aktif</li>
+                    <li><i class="fas fa-chart-line"></i> Meningkatkan volume transaksi internal</li>
+                    <li><i class="fas fa-mobile-alt"></i> Meningkatkan literasi digital UMKM</li>
+                    <li><i class="fas fa-database"></i> Membentuk ekosistem ekonomi berbasis data</li>
+                </ul>
+                <h3 class="final-statement">"Dari transaksi harian menuju peta ekonomi daerah."</h3>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="presentation_script.js"></script>
+</body>
+
+</html>
