@@ -158,14 +158,26 @@ h2 {
 /* Slide 1: Hero Image */
 .hero-image-container {
     margin-top: 2rem;
+    margin-bottom: 3rem;
+    /* Spacing for desktop footer */
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* Center the image vertically */
     perspective: 1000px;
+    flex: 1;
+    /* Expand to fill remaining available height */
+    min-height: 0;
+    /* Prevent children from expanding container beyond height */
 }
 
 .hero-image {
     max-width: 90%;
+    max-height: 100%;
+    /* Limit the image height to its container */
+    width: auto;
     height: auto;
+    object-fit: contain;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     animation: floatAnimation 4s ease-in-out infinite;
@@ -577,6 +589,8 @@ h2 {
     /* Slide 1 */
     .hero-image-container {
         margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        /* Spacing for mobile footer */
     }
 
     .hero-image {
