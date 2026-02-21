@@ -32,7 +32,8 @@ body {
 
 /* Navigation Controls */
 .nav-controls {
-    position: absolute;
+    position: fixed;
+    /* Fixed prevents shifting upon content load */
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);

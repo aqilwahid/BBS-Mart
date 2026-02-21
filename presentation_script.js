@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 optionsDiv.classList.add('message', 'in', 'product-options');
 
                 const p1 = createProductOption('Keripik "Mak Nyak" - Rp 12.000 - 500m', 1, 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=150&auto=format&fit=crop');
-                const p2 = createProductOption('Keripik "Sumber Rejeki" - Rp 10.000 - 1.2km', 2, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=150&auto=format&fit=crop');
+                const p2 = createProductOption('Keripik "Sumber Rejeki" - Rp 10.000 - 1.2km', 2, 'https://images.unsplash.com/photo-1541592102781-c309f7a90b4d?q=80&w=150&auto=format&fit=crop');
 
                 optionsDiv.appendChild(p1);
                 optionsDiv.appendChild(p2);
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             addMessage('Sebagai gantinya, "Keripik Sumber Rejeki" ready dan jaraknya dekat (1.2km). Mau pesankan ini saja?', 'in');
                             const confirmDiv = document.createElement('div');
                             confirmDiv.classList.add('message', 'in', 'product-options');
-                            const yesBtn = createProductOption('Boleh, pesan Sumber Rejeki', null, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=150&auto=format&fit=crop');
+                            const yesBtn = createProductOption('Boleh, pesan Sumber Rejeki', null, 'https://images.unsplash.com/photo-1541592102781-c309f7a90b4d?q=80&w=150&auto=format&fit=crop');
                             confirmDiv.appendChild(yesBtn);
                             chatBody.appendChild(confirmDiv);
                             scrollToBottom();
