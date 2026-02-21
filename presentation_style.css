@@ -125,15 +125,9 @@ body {
     margin-bottom: 3rem;
 }
 
-.logo-bbs {
-    height: 80px;
-    width: auto;
-    object-fit: contain;
-}
-
-.logo-bbs-mart {
-    height: 130px;
-    /* Significantly larger */
+.logo-home {
+    height: 100px;
+    /* Adjusted height for single logo */
     width: auto;
     object-fit: contain;
 }
@@ -161,26 +155,35 @@ h2 {
 
 
 
-/* Slide 1: Problem */
-.problem-visuals {
+/* Slide 1: Hero Image */
+.hero-image-container {
+    margin-top: 2rem;
     display: flex;
-    justify-content: space-around;
-    margin-top: 3rem;
+    justify-content: center;
+    perspective: 1000px;
 }
 
-.problem-item {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-    animation: fadeIn 1s ease-out forwards;
+.hero-image {
+    max-width: 90%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: floatAnimation 4s ease-in-out infinite;
+    transform-style: preserve-3d;
 }
 
-.problem-item i {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: #d32f2f;
-    /* Alert color for problem */
-    display: block;
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0px) rotateX(5deg) scale(1);
+    }
+
+    50% {
+        transform: translateY(-15px) rotateX(0deg) scale(1.02);
+    }
+
+    100% {
+        transform: translateY(0px) rotateX(5deg) scale(1);
+    }
 }
 
 /* Slide 2: Solution */
@@ -337,11 +340,23 @@ h2 {
 
 .product-option {
     background: #f9f9f9;
-    padding: 5px;
+    padding: 8px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 0.85rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.product-option img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
 }
 
 .product-option:hover {
@@ -551,20 +566,21 @@ h2 {
 
     /* Logos */
     .logo-container {
-        gap: 15px;
         margin-bottom: 1rem;
     }
 
-    .logo-bbs,
-    .logo-bbs-mart {
-        height: 50px;
+    .logo-home {
+        height: 60px;
         /* Smaller height for mobile */
     }
 
     /* Slide 1 */
-    .problem-visuals {
-        flex-direction: column;
-        gap: 20px;
+    .hero-image-container {
+        margin-top: 1.5rem;
+    }
+
+    .hero-image {
+        max-width: 100%;
     }
 
     /* Slide 2 */

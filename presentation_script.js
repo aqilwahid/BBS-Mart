@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const optionsDiv = document.createElement('div');
                 optionsDiv.classList.add('message', 'in', 'product-options');
 
-                const p1 = createProductOption('Keripik "Mak Nyak" - Rp 12.000 - 500m', 1);
-                const p2 = createProductOption('Keripik "Sumber Rejeki" - Rp 10.000 - 1.2km', 2);
+                const p1 = createProductOption('Keripik "Mak Nyak" - Rp 12.000 - 500m', 1, 'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=150&auto=format&fit=crop');
+                const p2 = createProductOption('Keripik "Sumber Rejeki" - Rp 10.000 - 1.2km', 2, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=150&auto=format&fit=crop');
 
                 optionsDiv.appendChild(p1);
                 optionsDiv.appendChild(p2);
@@ -83,10 +83,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500); // Network delay
     };
 
-    function createProductOption(text, id) {
+    function createProductOption(text, id, imageUrl = null) {
         const div = document.createElement('div');
         div.classList.add('product-option');
-        div.innerText = text;
+
+        if (imageUrl) {
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = 'Thumbnail';
+            div.appendChild(img);
+        }
+
+        const span = document.createElement('span');
+        span.innerText = text;
+        div.appendChild(span);
+
         div.onclick = () => selectProduct(text);
         return div;
     }
@@ -109,10 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             addMessage('Sebagai gantinya, "Keripik Sumber Rejeki" ready dan jaraknya dekat (1.2km). Mau pesankan ini saja?', 'in');
                             const confirmDiv = document.createElement('div');
                             confirmDiv.classList.add('message', 'in', 'product-options');
-                            const yesBtn = document.createElement('div');
-                            yesBtn.classList.add('product-option');
-                            yesBtn.innerText = 'Boleh, pesan Sumber Rejeki';
-                            yesBtn.onclick = () => selectProduct('Boleh, pesan Sumber Rejeki');
+                            const yesBtn = createProductOption('Boleh, pesan Sumber Rejeki', null, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=150&auto=format&fit=crop');
                             confirmDiv.appendChild(yesBtn);
                             chatBody.appendChild(confirmDiv);
                             scrollToBottom();
@@ -133,10 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         addMessage(`Perlu jasa antar sampai rumah?`, 'in');
                         const confirmDiv = document.createElement('div');
                         confirmDiv.classList.add('message', 'in', 'product-options');
-                        const yesBtn = document.createElement('div');
-                        yesBtn.classList.add('product-option');
-                        yesBtn.innerText = 'Ya, tolong carikan kurir';
-                        yesBtn.onclick = () => selectProduct('Ya, tolong carikan kurir');
+                        const yesBtn = createProductOption('Ya, tolong carikan kurir', null, 'https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?q=80&w=150&auto=format&fit=crop');
                         confirmDiv.appendChild(yesBtn);
                         chatBody.appendChild(confirmDiv);
                         scrollToBottom();
