@@ -49,34 +49,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusDiv = document.getElementById('simulation-status');
     let chatState = 0; // 0: Start, 1: AI Result, 2: User Select, 3: Delivery Offer, 4: Done
 
-    window.startChatDemo = function() {
+    window.startChatDemo = function () {
         // Reset chat
         chatBody.innerHTML = '';
         chatState = 0;
         statusDiv.innerText = "Simulasi dimulai...";
-        
-        // Step 1: User asks
-        addMessage('Cari keripik singkong pedas', 'out');
-        
+
+        // Poin 4: Tantangan NLP (Bahasa Gaul/Daerah & Typo)
+        // User menggunakan bahasa lokal/singkatan
+        addMessage('Cari kripik singkong pedes cacak', 'out');
+
         // Step 2: AI Thinking & Replies
         setTimeout(() => {
             showTyping();
             setTimeout(() => {
                 removeTyping();
                 addMessage('Berikut rekomendasi Keripik Singkong Pedas terdekat:', 'in');
-                
+
                 // Add product options
                 const optionsDiv = document.createElement('div');
                 optionsDiv.classList.add('message', 'in', 'product-options');
-                
+
                 const p1 = createProductOption('Keripik "Mak Nyak" - Rp 12.000 - 500m', 1);
                 const p2 = createProductOption('Keripik "Sumber Rejeki" - Rp 10.000 - 1.2km', 2);
-                
+
                 optionsDiv.appendChild(p1);
                 optionsDiv.appendChild(p2);
                 chatBody.appendChild(optionsDiv);
-                
-                statusDiv.innerText = "AI menampilkan hasil.";
+
+                statusDiv.innerText = "AI memahami konteks lokal & menampilkan hasil.";
                 scrollToBottom();
             }, 1000); // AI think time
         }, 500); // Network delay
@@ -90,76 +91,47 @@ document.addEventListener('DOMContentLoaded', () => {
         return div;
     }
 
-    function selectProduct(productName) {
-        // Step 3: User selects
-        addMessage(`Saya pesan ${productName}`, 'out');
-        statusDiv.innerText = "User memilih produk.";
-        
-        // Step 4: AI Confirms & Upsell
-        setTimeout(() => {
-            showTyping();
-            setTimeout(() => {
-                removeTyping();
-                addMessage(`Baik, pesanan diteruskan ke penjual.`, 'in');
-                
-                setTimeout(() => {
-                    addMessage(`Perlu jasa antar sampai rumah?`, 'in');
-                    
-                    // Yes/No Options
-                    const confirmDiv = document.createElement('div');
-                    confirmDiv.classList.add('message', 'in', 'product-options');
-                    const yesBtn = createProductOption('Ya, tolong carikan kurir', 'yes');
-                    confirmDiv.appendChild(yesBtn);
-                    chatBody.appendChild(confirmDiv);
-                    scrollToBottom();
-                    statusDiv.innerText = "AI menawarkan kurir.";
-
-                }, 800);
-            }, 1000);
-        }, 500);
-    }
-
-    window.selectCourier = function() { // Implicitly called by the 'yes' option above logic if expanded, but simple click handler handles it
-        // We attach the logic dynamically in createProductOption for simplicity, 
-        // but here we need to handle the specific "Yes" click.
-        // Modified createProductOption above handles generic click, let's override for the "Yes" logic or just use the generic one for flow.
-        // We will make the createProductOption smarter in a real app, but for proto:
-    };
-    
-    // Override click for the "Yes" button specifically in the flow:
-    // Actually, let's refactor createProductOption to take a callback or just inspect text.
-    // For this prototype, I'll rely on the text content to branch logic.
-    
-    const originalSelect = selectProduct;
-    selectProduct = function(text) {
+    function selectProduct(text) {
         addMessage(text, 'out');
-        
-        if (text.includes('kurir')) {
-            // Final Step
+
+        if (text.includes('Mak Nyak')) {
+            // Poin 1: Sinkronisasi Inventaris (Skenario Habis Stok & Rekomendasi)
+            statusDiv.innerText = "Memeriksa ketersediaan stok ke penjual...";
             setTimeout(() => {
                 showTyping();
                 setTimeout(() => {
                     removeTyping();
-                    addMessage('Kurir "Cak Budi" sedang menuju lokasi. Estimasi biaya Rp 5.000.', 'in');
-                    addMessage('Total: Rp 17.000. Bayar via BPRS atau COD.', 'in');
-                    statusDiv.innerText = "Transaksi Selesai.";
-                    scrollToBottom();
+                    addMessage('Waduh, barusan dicek ke penjual, Keripik "Mak Nyak" ternyata baru saja habis di toko offline. 😅', 'in');
+                    setTimeout(() => {
+                        showTyping();
+                        setTimeout(() => {
+                            removeTyping();
+                            addMessage('Sebagai gantinya, "Keripik Sumber Rejeki" ready dan jaraknya dekat (1.2km). Mau pesankan ini saja?', 'in');
+                            const confirmDiv = document.createElement('div');
+                            confirmDiv.classList.add('message', 'in', 'product-options');
+                            const yesBtn = document.createElement('div');
+                            yesBtn.classList.add('product-option');
+                            yesBtn.innerText = 'Boleh, pesan Sumber Rejeki';
+                            yesBtn.onclick = () => selectProduct('Boleh, pesan Sumber Rejeki');
+                            confirmDiv.appendChild(yesBtn);
+                            chatBody.appendChild(confirmDiv);
+                            scrollToBottom();
+                            statusDiv.innerText = "AI menawarkan alternatif (Negosiasi otomatis).";
+                        }, 1000);
+                    }, 500);
                 }, 1000);
             }, 500);
-        } else {
+        } else if (text.includes('Sumber Rejeki')) {
             // Normal product selection flow
-            // Re-use logic from before, but avoid infinite recursion if I called originalSelect inside.
-            // Let's just inline the product selection logic here for clarity.
-             statusDiv.innerText = "User memilih produk.";
-             
-             setTimeout(() => {
+            statusDiv.innerText = "User menyetujui produk.";
+            setTimeout(() => {
                 showTyping();
                 setTimeout(() => {
                     removeTyping();
-                    addMessage(`Baik, pesanan diteruskan ke penjual.`, 'in');
+                    addMessage(`Baik, pesanan diteruskan ke penjual Keripik "Sumber Rejeki".`, 'in');
                     setTimeout(() => {
                         addMessage(`Perlu jasa antar sampai rumah?`, 'in');
-                         const confirmDiv = document.createElement('div');
+                        const confirmDiv = document.createElement('div');
                         confirmDiv.classList.add('message', 'in', 'product-options');
                         const yesBtn = document.createElement('div');
                         yesBtn.classList.add('product-option');
@@ -172,9 +144,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 800);
                 }, 1000);
             }, 500);
+        } else if (text.includes('kurir')) {
+            // Poin 5 & Poin 2: Sustainability (Admin Fee) & Validasi Pembayaran Mandiri (BPRS API)
+            setTimeout(() => {
+                showTyping();
+                setTimeout(() => {
+                    removeTyping();
+                    addMessage('Kurir "Cak Budi" sedang menuju ke penjual. Estimasi ongkir Rp 5.000.', 'in');
+
+                    setTimeout(() => {
+                        addMessage('📝 Rincian Pembayaran:\n- Produk: Rp 10.000\n- Ongkir: Rp 5.000\n- Admin Layanan: Rp 1.000\n\nTotal: Rp 16.000', 'in');
+
+                        setTimeout(() => {
+                            addMessage('Anda bisa bayar via transfer BPRS Bhakti Sumekar (AI otomatis memvalidasi mutasi via Open API) atau COD.', 'in');
+                            statusDiv.innerText = "Transaksi Selesai & Validasi Pembayaran.";
+                            scrollToBottom();
+                        }, 1200);
+                    }, 1000);
+                }, 1000);
+            }, 500);
         }
     }
-
 
     function addMessage(text, type) {
         const div = document.createElement('div');
